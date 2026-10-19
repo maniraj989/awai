@@ -21,16 +21,17 @@ import BlogModal from './components/BlogModal';
 import { BEST_SELLING_PRODUCTS } from './data/mockData';
 
 export default function App() {
-  // Check initial hash/path, default to 'contact' for the current redesign
+  // Check initial hash/path, default to 'home' when opening website link
   const [activeNav, setActiveNav] = useState(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.toLowerCase();
-      const path = window.location.pathname.toLowerCase();
-      if (hash.includes('about') || path.includes('about')) return 'about';
-      if (hash.includes('home')) return 'home';
-      return 'contact';
+      if (hash.includes('contact')) return 'contact';
+      if (hash.includes('about')) return 'about';
+      if (hash.includes('shop')) return 'shop';
+      if (hash.includes('blog')) return 'blog';
+      return 'home';
     }
-    return 'contact';
+    return 'home';
   });
 
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -45,9 +46,9 @@ export default function App() {
       const hash = window.location.hash.toLowerCase();
       if (hash.includes('contact')) setActiveNav('contact');
       else if (hash.includes('about')) setActiveNav('about');
-      else if (hash.includes('home')) setActiveNav('home');
       else if (hash.includes('shop')) setActiveNav('shop');
       else if (hash.includes('blog')) setActiveNav('blog');
+      else setActiveNav('home');
     };
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
@@ -56,7 +57,15 @@ export default function App() {
   // Navigation click handler
   const handleNavClick = (id) => {
     setActiveNav(id);
-    window.location.hash = id === 'contact' ? 'contact-us' : id;
+    if (id === 'contact') {
+      window.location.hash = 'contact-us';
+    } else if (id === 'about') {
+      window.location.hash = 'about-us';
+    } else if (id === 'home') {
+      window.location.hash = 'home';
+    } else {
+      window.location.hash = id;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -85,11 +94,12 @@ export default function App() {
 
       {/* 2. Main Header with Logo, Select Category & Red Search Button */}
       <MainHeader
+        onHomeClick={() => handleNavClick('home')}
         onProductSelect={handleProductSelectById}
         onCategorySelect={handleCategorySelect}
       />
 
-      {/* 3. Main Navigation Row with Contact Us highlighted */}
+      {/* 3. Main Navigation Row */}
       <NavigationBar
         activeNav={activeNav}
         onNavClick={handleNavClick}

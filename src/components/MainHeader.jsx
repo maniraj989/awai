@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Search, ChevronDown, X } from 'lucide-react';
 import { BEST_SELLING_PRODUCTS, CATEGORIES } from '../data/mockData';
 
-export default function MainHeader({ onProductSelect, onCategorySelect }) {
+export default function MainHeader({ onProductSelect, onCategorySelect, onHomeClick }) {
   const [query, setQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
@@ -54,7 +54,17 @@ export default function MainHeader({ onProductSelect, onCategorySelect }) {
     <header className="w-full bg-[#FFFFFF] border-b border-[#E5E9ED] relative z-40">
       <div className="max-w-[1240px] mx-auto px-4 md:px-8 h-16 md:h-[68px] flex items-center justify-between gap-4 md:gap-8">
         {/* AWAI Brand Logo with Tagline */}
-        <a href="#home" className="flex items-center shrink-0 group focus:outline-none" aria-label="AWAI Nepal Home">
+        <a
+          href="#home"
+          onClick={(e) => {
+            if (onHomeClick) {
+              e.preventDefault();
+              onHomeClick();
+            }
+          }}
+          className="flex items-center shrink-0 group focus:outline-none"
+          aria-label="AWAI Nepal Home"
+        >
           <img
             src="/images/logo.png"
             alt="AWAI - Choose Digital Lifestyle"
