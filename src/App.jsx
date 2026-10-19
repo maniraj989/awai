@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UtilityBar from './components/UtilityBar';
 import MainHeader from './components/MainHeader';
 import NavigationBar from './components/NavigationBar';
@@ -12,6 +12,7 @@ import BlogSection from './components/BlogSection';
 import Footer from './components/Footer';
 
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
 import VideoModal from './components/VideoModal';
 import SpecialOfferModal from './components/SpecialOfferModal';
@@ -20,20 +21,43 @@ import BlogModal from './components/BlogModal';
 import { BEST_SELLING_PRODUCTS } from './data/mockData';
 
 export default function App() {
-  // Default to 'about' page to display the redesigned About Us page
-  const [activeNav, setActiveNav] = useState('about');
+  // Check initial hash/path, default to 'contact' for the current redesign
+  const [activeNav, setActiveNav] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      const path = window.location.pathname.toLowerCase();
+      if (hash.includes('about') || path.includes('about')) return 'about';
+      if (hash.includes('home')) return 'home';
+      return 'contact';
+    }
+    return 'contact';
+  });
+
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isSpecialOfferOpen, setIsSpecialOfferOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedBlog, setSelectedBlog] = useState(null);
 
+  // Sync hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('contact')) setActiveNav('contact');
+      else if (hash.includes('about')) setActiveNav('about');
+      else if (hash.includes('home')) setActiveNav('home');
+      else if (hash.includes('shop')) setActiveNav('shop');
+      else if (hash.includes('blog')) setActiveNav('blog');
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   // Navigation click handler
   const handleNavClick = (id) => {
     setActiveNav(id);
-    if (id === 'home' || id === 'shop' || id === 'blog' || id === 'contact') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    window.location.hash = id === 'contact' ? 'contact-us' : id;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCategorySelect = (categoryId) => {
@@ -57,10 +81,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-[#17212B] flex flex-col font-sans selection:bg-[#E91E32] selection:text-white">
       {/* 1. Slim Utility Bar */}
-      <UtilityBar onContactClick={() => {
-        const contactEl = document.getElementById('contact');
-        if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
-      }} />
+      <UtilityBar onContactClick={() => handleNavClick('contact')} />
 
       {/* 2. Main Header with Logo, Select Category & Red Search Button */}
       <MainHeader
@@ -68,7 +89,7 @@ export default function App() {
         onCategorySelect={handleCategorySelect}
       />
 
-      {/* 3. Main Navigation Row with About Us highlighted */}
+      {/* 3. Main Navigation Row with Contact Us highlighted */}
       <NavigationBar
         activeNav={activeNav}
         onNavClick={handleNavClick}
@@ -78,7 +99,10 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 w-full">
-        {activeNav === 'about' ? (
+        {activeNav === 'contact' ? (
+          /* Redesigned Contact Us Page */
+          <ContactPage />
+        ) : activeNav === 'about' ? (
           /* Redesigned About Us Page */
           <AboutPage onPlayVideo={() => setIsVideoModalOpen(true)} />
         ) : (
@@ -110,7 +134,7 @@ export default function App() {
 
             <AboutAwai
               onPlayVideo={() => setIsVideoModalOpen(true)}
-              onLearnMore={() => setActiveNav('about')}
+              onLearnMore={() => handleNavClick('about')}
             />
 
             <BlogSection
