@@ -1,0 +1,160 @@
+export const CATEGORIES = [
+  {
+    id: 'refrigerators',
+    name: 'Refrigerators',
+    count: '4 Products',
+    image: '/images/category-refrigerators.jpg',
+  },
+  {
+    id: 'washing-machines',
+    name: 'Washing Machines',
+    count: '10 Products',
+    image: '/images/category-washing-machines.jpg',
+  },
+  {
+    id: 'air-conditioners',
+    name: 'Air Conditioners',
+    count: '5 Products',
+    image: '/images/category-air-conditioners.jpg',
+  },
+  {
+    id: 'fans',
+    name: 'Fans',
+    count: '5 Products',
+    image: '/images/category-fans.jpg',
+  },
+  {
+    id: 'water-dispensers',
+    name: 'Water Dispensers',
+    count: '2 Products',
+    image: '/images/category-water-dispensers.jpg',
+  },
+  {
+    id: 'coolers',
+    name: 'Coolers',
+    count: '5 Products',
+    image: '/images/category-coolers.jpg',
+  },
+  {
+    id: 'rice-cookers',
+    name: 'Rice Cookers',
+    count: '5 Products',
+    image: '/images/category-rice-cookers.jpg',
+  },
+];
+
+export const BEST_SELLING_PRODUCTS = [
+  {
+    id: 'prod-1',
+    name: 'AWAI 4-Door Refrigerator',
+    category: 'refrigerators',
+    specs: '470L | Inverter | Black',
+    rating: 4.8,
+    reviews: 48,
+    price: 'Rs. 140,000',
+    badge: 'Best Seller',
+    image: '/images/product-refrigerator.jpg',
+  },
+  {
+    id: 'prod-2',
+    name: 'AWAI Front Load Washing Machine',
+    category: 'washing-machines',
+    specs: '10kg | Inverter | Silver',
+    rating: 4.7,
+    reviews: 42,
+    price: 'Rs. 70,000',
+    badge: 'Top Rated',
+    image: '/images/product-washing-machine.jpg',
+  },
+  {
+    id: 'prod-3',
+    name: 'AWAI Split AC',
+    category: 'air-conditioners',
+    specs: '1.5 Ton | Inverter | White',
+    rating: 4.6,
+    reviews: 35,
+    price: 'Rs. 60,000',
+    badge: null,
+    image: '/images/product-air-conditioner.jpg',
+  },
+  {
+    id: 'prod-4',
+    name: 'AWAI Tower Fan',
+    category: 'fans',
+    specs: 'With Remote | 3 Speed',
+    rating: 4.5,
+    reviews: 28,
+    price: 'Rs. 8,500',
+    badge: null,
+    image: '/images/product-tower-fan.jpg',
+  },
+  {
+    id: 'prod-5',
+    name: 'AWAI Water Dispenser',
+    category: 'water-dispensers',
+    specs: 'Hot & Cold | White',
+    rating: 4.5,
+    reviews: 19,
+    price: 'Rs. 12,000',
+    badge: null,
+    image: '/images/product-water-dispenser.jpg',
+  },
+];
+
+export const BLOG_POSTS = [
+  {
+    id: 'blog-1',
+    title: 'How to Choose the Right Refrigerator for Your Family',
+    date: 'April 12, 2025',
+    image: '/images/blog-refrigerator.jpg',
+    excerpt: 'Finding the ideal refrigerator capacity and inverter features for modern Nepali kitchens.',
+  },
+  {
+    id: 'blog-2',
+    title: '5 Tips to Keep Your Washing Machine in Good Condition',
+    date: 'April 8, 2025',
+    image: '/images/blog-washer.jpg',
+    excerpt: 'Simple maintenance routines to extend the lifespan of front-load and top-load appliances.',
+  },
+  {
+    id: 'blog-3',
+    title: 'Energy Saving Tips for Your Air Conditioner',
+    date: 'April 5, 2025',
+    image: '/images/blog-ac.jpg',
+    excerpt: 'Smart thermostat settings and inverter AC maintenance to cut electricity bills during summer.',
+  },
+  {
+    id: 'blog-4',
+    title: 'Healthy Cooking with AWAI Rice Cooker',
+    date: 'April 2, 2025',
+    image: '/images/blog-cooker.jpg',
+    excerpt: 'Delicious multi-grain rice and steamed nutritious recipes made effortlessly.',
+  },
+];
+
+export const BENEFITS = [
+  {
+    id: 'benefit-1',
+    title: 'Premium Quality',
+    subtitle: 'International Standards',
+    icon: 'Award',
+  },
+  {
+    id: 'benefit-2',
+    title: 'Wide Product Range',
+    subtitle: 'For Every Home',
+    icon: 'Package',
+  },
+  {
+    id: 'benefit-3',
+    title: 'After Sales Support',
+    subtitle: 'Across Nepal',
+    icon: 'Headphones',
+  },
+  {
+    id: 'benefit-4',
+    title: 'Trusted Brand',
+    subtitle: 'Over 15 Years',
+    icon: 'ShieldCheck',
+  },
+];
