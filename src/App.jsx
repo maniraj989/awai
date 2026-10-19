@@ -13,12 +13,14 @@ import Footer from './components/Footer';
 
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import ShopPage from './pages/ShopPage';
 
 import VideoModal from './components/VideoModal';
 import SpecialOfferModal from './components/SpecialOfferModal';
 import ProductDetailModal from './components/ProductDetailModal';
 import BlogModal from './components/BlogModal';
 import { BEST_SELLING_PRODUCTS } from './data/mockData';
+import { SHOP_PRODUCTS, TOP_RATED_PRODUCTS } from './data/shopProducts';
 
 export default function App() {
   // Check initial hash/path, default to 'home' when opening website link
@@ -61,6 +63,8 @@ export default function App() {
       window.location.hash = 'contact-us';
     } else if (id === 'about') {
       window.location.hash = 'about-us';
+    } else if (id === 'shop') {
+      window.location.hash = 'shop';
     } else if (id === 'home') {
       window.location.hash = 'home';
     } else {
@@ -81,7 +85,13 @@ export default function App() {
   };
 
   const handleProductSelectById = (productId) => {
-    const product = BEST_SELLING_PRODUCTS.find((p) => p.id === productId);
+    let product = BEST_SELLING_PRODUCTS.find((p) => p.id === productId);
+    if (!product) {
+      product = SHOP_PRODUCTS.find((p) => p.id === productId);
+    }
+    if (!product) {
+      product = TOP_RATED_PRODUCTS.find((p) => p.id === productId);
+    }
     if (product) {
       setSelectedProduct(product);
     }
@@ -115,14 +125,17 @@ export default function App() {
         ) : activeNav === 'about' ? (
           /* Redesigned About Us Page */
           <AboutPage onPlayVideo={() => setIsVideoModalOpen(true)} />
+        ) : activeNav === 'shop' ? (
+          /* Redesigned Shop Page */
+          <ShopPage
+            onProductSelect={handleProductSelectById}
+            onHomeClick={() => handleNavClick('home')}
+          />
         ) : (
           /* Homepage Sections */
           <>
             <div id="home">
-              <HeroBanner onExploreClick={() => {
-                const shopEl = document.getElementById('shop');
-                if (shopEl) shopEl.scrollIntoView({ behavior: 'smooth' });
-              }} />
+              <HeroBanner onExploreClick={() => handleNavClick('shop')} />
             </div>
 
             <CategorySection
@@ -133,7 +146,7 @@ export default function App() {
             <BestSellingSection
               selectedCategoryId={selectedCategory}
               onProductClick={(product) => setSelectedProduct(product)}
-              onViewAllClick={() => setSelectedCategory('all')}
+              onViewAllClick={() => handleNavClick('shop')}
             />
 
             <PromotionBanners
