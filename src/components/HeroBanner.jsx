@@ -49,34 +49,34 @@ export default function HeroBanner({ onExploreClick }) {
           </div>
 
           {/* Three Trust Indicators */}
-          <div className="grid grid-cols-3 gap-2 pt-2.5 border-t border-[#E5E9ED]/90 max-w-md">
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full border border-[#CBD5E1] flex items-center justify-center shrink-0 bg-white/90 shadow-2xs">
-                <Award className="w-3.5 h-3.5 text-[#111D27]" />
+          <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-2.5 border-t border-[#E5E9ED]/90 max-w-md">
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-[#CBD5E1] flex items-center justify-center shrink-0 bg-white/90 shadow-2xs">
+                <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#111D27]" />
               </div>
-              <div className="leading-tight">
-                <div className="text-[11px] font-bold text-[#111D27]">Trusted Quality</div>
-                <div className="text-[10px] text-[#737D87]">Genuine Products</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full border border-[#CBD5E1] flex items-center justify-center shrink-0 bg-white/90 shadow-2xs">
-                <Headphones className="w-3.5 h-3.5 text-[#111D27]" />
-              </div>
-              <div className="leading-tight">
-                <div className="text-[11px] font-bold text-[#111D27]">Reliable Service</div>
-                <div className="text-[10px] text-[#737D87]">Nationwide Support</div>
+              <div className="leading-tight min-w-0">
+                <div className="text-[10px] sm:text-[11px] font-bold text-[#111D27] truncate">Trusted Quality</div>
+                <div className="text-[9px] sm:text-[10px] text-[#737D87] truncate">Genuine Products</div>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full border border-[#CBD5E1] flex items-center justify-center shrink-0 bg-white/90 shadow-2xs">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#111D27]" />
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-[#CBD5E1] flex items-center justify-center shrink-0 bg-white/90 shadow-2xs">
+                <Headphones className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#111D27]" />
               </div>
-              <div className="leading-tight">
-                <div className="text-[11px] font-bold text-[#111D27]">Warranty</div>
-                <div className="text-[10px] text-[#737D87]">Up to 2 Years</div>
+              <div className="leading-tight min-w-0">
+                <div className="text-[10px] sm:text-[11px] font-bold text-[#111D27] truncate">Reliable Service</div>
+                <div className="text-[9px] sm:text-[10px] text-[#737D87] truncate">Nationwide Support</div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-[#CBD5E1] flex items-center justify-center shrink-0 bg-white/90 shadow-2xs">
+                <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#111D27]" />
+              </div>
+              <div className="leading-tight min-w-0">
+                <div className="text-[10px] sm:text-[11px] font-bold text-[#111D27] truncate">Warranty</div>
+                <div className="text-[9px] sm:text-[10px] text-[#737D87] truncate">Up to 2 Years</div>
               </div>
             </div>
           </div>

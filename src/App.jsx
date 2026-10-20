@@ -19,6 +19,7 @@ import VideoModal from './components/VideoModal';
 import SpecialOfferModal from './components/SpecialOfferModal';
 import ProductDetailModal from './components/ProductDetailModal';
 import BlogModal from './components/BlogModal';
+import MobileMenuDrawer from './components/MobileMenuDrawer';
 import { BEST_SELLING_PRODUCTS } from './data/mockData';
 import { SHOP_PRODUCTS, TOP_RATED_PRODUCTS } from './data/shopProducts';
 
@@ -39,6 +40,7 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isSpecialOfferOpen, setIsSpecialOfferOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedBlog, setSelectedBlog] = useState(null);
 
@@ -107,6 +109,8 @@ export default function App() {
         onHomeClick={() => handleNavClick('home')}
         onProductSelect={handleProductSelectById}
         onCategorySelect={handleCategorySelect}
+        onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
+        onSpecialOfferClick={() => setIsSpecialOfferOpen(true)}
       />
 
       {/* 3. Main Navigation Row */}
@@ -115,6 +119,7 @@ export default function App() {
         onNavClick={handleNavClick}
         onSpecialOfferClick={() => setIsSpecialOfferOpen(true)}
         onCategorySelect={handleCategorySelect}
+        onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -196,6 +201,16 @@ export default function App() {
       <BlogModal
         blog={selectedBlog}
         onClose={() => setSelectedBlog(null)}
+      />
+
+      {/* Mobile Menu Drawer */}
+      <MobileMenuDrawer
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        activeNav={activeNav}
+        onNavClick={handleNavClick}
+        onCategorySelect={handleCategorySelect}
+        onSpecialOfferClick={() => setIsSpecialOfferOpen(true)}
       />
     </div>
   );
